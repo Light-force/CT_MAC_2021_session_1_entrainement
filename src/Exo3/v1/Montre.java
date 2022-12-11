@@ -28,7 +28,7 @@ public class Montre {
     }
 
     public void appuyerBoutonAvance() {
-        etatCourant.actionAvance(this);
+        setEtatCourant(etatCourant.actionAvance(this));
     }
 
     public void modifierHeure() {

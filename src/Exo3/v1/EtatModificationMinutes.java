@@ -14,8 +14,9 @@ public class EtatModificationMinutes implements Etat {
     }
 
     @Override
-    public void actionAvance(Montre montre) {
+    public Etat actionAvance(Montre montre) {
         montre.modifierMinutes();
+        return this;
     }
 
     @Override

@@ -14,8 +14,9 @@ public class EtatModificationHeures implements Etat {
     }
 
     @Override
-    public void actionAvance(Montre montre) {
+    public Etat actionAvance(Montre montre) {
         montre.modifierHeure();
+        return this;
     }
 
     @Override

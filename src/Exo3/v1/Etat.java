@@ -2,7 +2,7 @@ package Exo3.v1;
 
 public interface Etat {
 
-    default void actionAvance(Montre montre) {
+    default Etat actionAvance(Montre montre) {
         throw new UnsupportedOperationException();
     }
 
