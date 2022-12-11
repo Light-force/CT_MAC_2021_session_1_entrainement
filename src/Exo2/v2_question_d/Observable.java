@@ -1,0 +1,8 @@
+package Exo2.v2_question_d;
+
+public interface Observable {
+
+    void registerObserver(Observer o);
+
+    void removeObserver(Observer o);
+}
