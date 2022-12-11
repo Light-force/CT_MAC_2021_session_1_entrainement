@@ -12,7 +12,7 @@ public class Montre {
     private Date heure;
 
     public Montre() {
-        etatCourant = new EtatAffichage(this);
+        etatCourant = EtatAffichage.getInstance();
         dateFormat = new SimpleDateFormat("HH:mm");
         calendar = Calendar.getInstance();
         heure = new Date();
@@ -28,7 +28,7 @@ public class Montre {
     }
 
     public void appuyerBoutonAvance() {
-        etatCourant.actionAvance();
+        etatCourant.actionAvance(this);
     }
 
     public void modifierHeure() {

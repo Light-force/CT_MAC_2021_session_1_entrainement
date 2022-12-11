@@ -1,20 +1,25 @@
 package Exo3.v1;
 
+import java.util.Objects;
+
 public class EtatModificationHeures implements Etat {
 
-    private Montre montre;
+    private static Etat singleton;
 
-    public EtatModificationHeures(Montre montre) {
-        this.montre = montre;
+    public static Etat getInstance() {
+        if (Objects.isNull(singleton)) {
+            singleton = new EtatModificationHeures();
+        }
+        return singleton;
     }
 
     @Override
-    public void actionAvance() {
+    public void actionAvance(Montre montre) {
         montre.modifierHeure();
     }
 
     @Override
     public Etat actionChangerMode() {
-        return new EtatModificationMinutes(montre);
+        return EtatModificationMinutes.getInstance();
     }
 }
