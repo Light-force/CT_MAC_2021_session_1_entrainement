@@ -2,15 +2,11 @@ package Exo3.v1;
 
 public interface Etat {
 
-    default Etat modifierHeure() {
+    default void actionAvance() {
         throw new UnsupportedOperationException();
     }
 
-    default Etat modifierMinutes() {
-        throw new UnsupportedOperationException();
-    }
-
-    default Etat passerEnAffichage() {
+    default Etat actionChangerMode() {
         throw new UnsupportedOperationException();
     }
 }

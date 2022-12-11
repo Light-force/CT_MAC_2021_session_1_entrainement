@@ -7,12 +7,12 @@ import java.util.Date;
 public class Montre {
 
     private Etat etatCourant;
-    private SimpleDateFormat dateFormat;
-    private Calendar calendar;
+    private final SimpleDateFormat dateFormat;
+    private final Calendar calendar;
     private Date heure;
 
     public Montre() {
-        etatCourant = new EtatAffichage();
+        etatCourant = new EtatAffichage(this);
         dateFormat = new SimpleDateFormat("HH:mm");
         calendar = Calendar.getInstance();
         heure = new Date();
@@ -23,31 +23,25 @@ public class Montre {
         this.etatCourant = etatCourant;
     }
 
-    public void appuyerBontonMode() {
-        if (etatCourant instanceof EtatAffichage) {
-            setEtatCourant(etatCourant.modifierHeure());
-            System.out.println("Modification de l'heure :\n" + dateFormat.format(heure));
-        }
-        else if (etatCourant instanceof EtatModificationHeures) {
-            setEtatCourant(etatCourant.modifierMinutes());
-            System.out.println("Modification des minutes :\n" + dateFormat.format(heure));
-        }
-        else {
-            setEtatCourant(etatCourant.passerEnAffichage());
-            System.out.println(dateFormat.format(heure));
-        }
+    public void appuyerBoutonMode() {
+        setEtatCourant(etatCourant.actionChangerMode());
     }
 
-    public void appuyerBontonAvance() {
-        if (etatCourant instanceof EtatModificationHeures) {
-            calendar.add(Calendar.HOUR, 1);
-            heure = calendar.getTime();
-            System.out.println(dateFormat.format(heure));
-        }
-        else if (etatCourant instanceof EtatModificationMinutes) {
-            calendar.add(Calendar.MINUTE, 1);
-            heure = calendar.getTime();
-            System.out.println(dateFormat.format(heure));
-        }
+    public void appuyerBoutonAvance() {
+        etatCourant.actionAvance();
+    }
+
+    public void modifierHeure() {
+        System.out.println("Modification de l'heure :\n" + dateFormat.format(heure));
+        calendar.add(Calendar.HOUR, 1);
+        heure = calendar.getTime();
+        System.out.println(dateFormat.format(heure));
+    }
+
+    public void modifierMinutes() {
+        System.out.println("Modification des minutes :\n" + dateFormat.format(heure));
+        calendar.add(Calendar.MINUTE, 1);
+        heure = calendar.getTime();
+        System.out.println(dateFormat.format(heure));
     }
 }
